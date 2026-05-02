@@ -1,7 +1,7 @@
 # Bianinho — Backup Completo
 
-**Versão:** 1.0  
-**Data:** 2 de Maio de 2026  
+**Versão:** 1.0
+**Data:** 2 de Maio de 2026
 **Backup de:** Servidor de Álvaro Bianoi
 
 ---
@@ -23,55 +23,26 @@ https://github.com/NousResearch/hermes-agent
 
 ---
 
-## Instalação no MacBook — Resumo
-
-```bash
-# 1. Clonar Hermes Agent (NousResearch)
-git clone https://github.com/NousResearch/hermes-agent.git ~/.hermes/hermes-agent
-cd ~/.hermes/hermes-agent
-
-# 2. Aplicar personalizações do Bianinho
-git apply /caminho/para/customizations.patch
-
-# 3. Instalar
-pip install -e ".[messaging,voice,acp]"
-
-# 4. Copiar skills
-cp -r skills/ ~/.hermes/skills/
-
-# 5. Copiar config
-cp -r config/ ~/.hermes/
-
-# 6. Configurar API Keys
-nano ~/.hermes/.env
-```
-
----
-
-## Instalação Detalhada — MacBook
+## Instalação no MacBook
 
 ### Pré-requisitos
 
 ```bash
-# macOS (verificar)
+# macOS
 sw_vers
 
-# Homebrew (instalar se necessário)
+# Homebrew (se não tiver)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Python 3.11+ (Homebrew)
+# Python 3.11+
 brew install python@3.11
 brew link python@3.11 --force
 
-# Git
-brew install git
-
 # Verificar
 python3 --version   # deve ser 3.11+
-git --version
 ```
 
-### Passo 1 — Clonar Hermes Agent
+### Passo 1 — Clonar Hermes Agent (NousResearch)
 
 ```bash
 mkdir -p ~/.hermes
@@ -82,17 +53,9 @@ cd hermes-agent
 
 ### Passo 2 — Obter Este Backup
 
-**Opção A — Download directo** (mais fácil):
 ```bash
-# Download do ZIP deste repo
-curl -L https://github.com/AlvaroBiano/hermes-agent-custom/archive/refs/heads/main.zip -o backup.zip
-unzip backup.zip
-cd hermes-agent-custom-main
-```
-
-**Opção B — Git clone**:
-```bash
-git clone https://github.com/AlvaroBiano/hermes-agent-custom.git ~/Downloads/hermes-agent-custom
+# Clonar este repo
+git clone https://github.com/AlvaroBiano/bianinho-backup-1777760438.git ~/Downloads/bianinho-backup
 ```
 
 ### Passo 3 — Aplicar Personalizações
@@ -102,18 +65,11 @@ cd ~/.hermes/hermes-agent
 git apply /caminho/para/customizations.patch
 ```
 
-Se houver conflitos (raro):
-```bash
-git apply --3way /caminho/para/customizations.patch
-# Resolva conflitos manualmente se necessário
-```
-
 ### Passo 4 — Instalar Dependências
 
 ```bash
 pip install -e ".[messaging,voice,acp]"
-
-# Ou com Homebrew Python:
+# Ou com Python do Homebrew:
 python3 -m pip install -e ".[messaging,voice,acp]"
 ```
 
@@ -129,7 +85,7 @@ cp -r skills/ ~/.hermes/skills/
 cp -r config/* ~/.hermes/
 ```
 
-### Passo 7 — Configurar .env (API Keys)
+### Passo 7 — Configurar .env
 
 ```bash
 nano ~/.hermes/.env
@@ -137,102 +93,73 @@ nano ~/.hermes/.env
 
 Adicionar:
 ```env
-# MiniMax API (obrigatório para o Bianinho funcionar)
 MINIMAX_API_KEY=your_key_aqui
 MINIMAX_BASE_URL=https://api.minimaxi.com/v1
-
-# Opcional — Telegram
-TELEGRAM_BOT_TOKEN=your_telegram_token
+TELEGRAM_BOT_TOKEN=your_telegram_token  # opcional
 ```
 
 Guardar com `Ctrl+O`, `Enter`, `Ctrl+X`.
 
-### Passo 8 — Verificar Instalação
+### Passo 8 — Verificar
 
 ```bash
 hermes --version
 hermes --chat
 ```
 
-Se o Bianinho responder, está pronto!
+---
+
+## Pasta do Backup — O Que Está Incluído
+
+| Ficheiro | Descrição |
+|---|---|
+| `config/config.yaml` | Config principal do Hermes |
+| `config/retry_guard.json` | Estado de retries |
+| `config/inbox.json` | Inbox de tarefas |
+| `config/self_improvement_state.json` | Estado de auto-melhoria |
+| `config/proactive_suggestions_log.json` | Log de sugestões proativas |
+| `config/rag_status.json` | Estado do RAG |
+| `config/mandate.md` | Mandato do Bianinho |
+| `config/inbox.py` | Script inbox |
+| `config/cycle.py` | Ciclo autónomo |
+| `config/state.py` | Estado |
+| `autonomous/mandate.md` | Mandato (6º Pilar) |
+| `autonomous/inbox.py` | Script inbox |
+| `autonomous/cycle.py` | Ciclo de decisão |
+| `autonomous/state.json` | Estado actual |
 
 ---
 
 ## RAG Knowledge Base (~2GB)
 
-O RAG (memória vetorial) **não está neste backup** por causa do tamanho.
-
-### Para fazer backup do RAG no servidor:
+O RAG **não está neste backup** por causa do tamanho. No servidor, faz backup para Google Drive:
 
 ```bash
-# No servidor (já configurado no cron)
-# O script já faz backup automático para Google Drive
-# Ver: ~/KnowledgeBase/backup/
+# Criar tarball do RAG
+tar -czvf rag_backup.tar.gz ~/KnowledgeBase/
+
+# Upload para Google Drive (via rclone)
+rclone copy rag_backup.tar.gz gdrive:bianinho-backup/
 ```
 
-### Para restaurar o RAG no MacBook:
-
-1. No servidor, criar tarball do RAG:
-   ```bash
-   tar -czvf rag_backup.tar.gz ~/KnowledgeBase/
-   ```
-
-2. Upload para Google Drive:
-   ```bash
-   # Via rclone (configurado)
-   rclone copy rag_backup.tar.gz gdrive:bianinho-backup/
-   ```
-
-3. No MacBook, download e extrair:
-   ```bash
-   curl -L "link_do_google_drive" -o rag_backup.tar.gz
-   tar -xzvf rag_backup.tar.gz -C ~/
-   ```
+No MacBook, download e extrair:
+```bash
+rclone copy gdrive:bianinho-backup/rag_backup.tar.gz ./
+tar -xzvf rag_backup.tar.gz -C ~/
+```
 
 ---
 
-## Pasta do Backup
-
-O diretório `config/` inclui:
-
-| Ficheiro | Descrição |
-|---|---|
-| `config.yaml` | Config principal do Hermes |
-| `auth.json` | Auth state |
-| `retry_guard.json` | Estado de retries |
-| `inbox.json` | Inbox de tarefas |
-| `self_improvement_state.json` | Estado de auto-melhoria |
-| `proactive_suggestions_log.json` | Log de sugestões proativas |
-| `rag_status.json` | Estado do RAG |
-| `mandate.md` | Mandato do Bianinho |
-| `inbox.py` | Script inbox |
-| `cycle.py` | Ciclo autónomo |
-| `state.py` | Estado |
-| `state.json` | Estado actual |
-
----
-
-## Notas Importantes
+## Notas
 
 - **Python >= 3.11** é obrigatório
-- O Hermes Agent precisa de API key da MiniMax para funcionar
+- O Hermes Agent precisa da API key da MiniMax para funcionar
 - As skills são compatíveis com ambas as instalações (servidor e MacBook)
 - O RAG não é obrigatório para o agente funcionar — só para memória vetorial
 
 ---
 
-## Comandos do Bianinho (MacBook)
+## Repo Principal do Hermes Agent
 
-```bash
-# Chat interactivo
-hermes --chat
-
-# TUI (interface visual)
-hermes --tui
-
-# Com provider específico
-hermes --chat --provider minimax --model MiniMax-M2.7
-
-# Ver logs
-hermes logs --errors
-```
+O fork do Álvaro com as tuas personalizações:
+**https://github.com/AlvaroBiano/hermes-agent**
