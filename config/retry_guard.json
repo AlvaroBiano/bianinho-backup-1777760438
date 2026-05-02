@@ -1,0 +1,33 @@
+{
+  "version": "2026-05-02",
+  "telegram_reconnect": {
+    "max_retries": 3,
+    "backoff_base": 30,
+    "backoff_max": 300,
+    "jitter": true,
+    "pattern": "httpx.ReadError|Telegram network error"
+  },
+  "gateway_process": {
+    "max_retries": 2,
+    "backoff_base": 60,
+    "backoff_max": 180,
+    "pid_check": true,
+    "lock_file": "/tmp/hermes_gateway.lock"
+  },
+  "api_404": {
+    "max_retries": 1,
+    "backoff_base": 120,
+    "pattern": "api_404|404"
+  },
+  "network_timeout": {
+    "max_retries": 2,
+    "backoff_base": 45,
+    "backoff_max": 180
+  },
+  "rate_limit": {
+    "max_retries": 2,
+    "backoff_base": 90,
+    "backoff_max": 600
+  },
+  "updated_at": "2026-05-02T08:02:00"
+}

@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-04-24T15:00:00",
+  "lancedb_status": "lancedb_not_available",
+  "indexed_sources": {},
+  "total_chunks": 4778,
+  "total_sources": 27,
+  "pending_files": [
+    {
+      "filename": "test_download.epub",
+      "directory": "Downloads",
+      "size_bytes": 52482,
+      "size_mb": 0.05,
+      "modified": "2026-04-17T20:55:02.928281"
+    },
+    {
+      "filename": "brain_training.pdf",
+      "directory": "Downloads",
+      "size_bytes": 52376,
+      "size_mb": 0.05,
+      "modified": "2026-04-17T21:00:12.580374"
+    },
+    {
+      "filename": "milagre_da_manha_milionario.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 656051,
+      "size_mb": 0.63,
+      "modified": "2026-04-15T21:20:37.594520"
+    },
+    {
+      "filename": "pai_rico_pai_pobre.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 4807949,
+      "size_mb": 4.59,
+      "modified": "2026-04-15T20:20:32.141647"
+    },
+    {
+      "filename": "as_48_leis_do_poder.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 2134658,
+      "size_mb": 2.04,
+      "modified": "2026-04-15T21:05:52.194303"
+    },
+    {
+      "filename": "os_segredos_da_mente_milionaria.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 968193,
+      "size_mb": 0.92,
+      "modified": "2026-04-15T20:44:46.765930"
+    },
+    {
+      "filename": "a_psicologia_financeira.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 1207420,
+      "size_mb": 1.15,
+      "modified": "2026-04-15T20:13:38.590274"
+    },
+    {
+      "filename": "o_investidor_inteligente.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 3632324,
+      "size_mb": 3.46,
+      "modified": "2026-04-15T20:56:08.941409"
+    },
+    {
+      "filename": "revolucao_8020.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 2818254,
+      "size_mb": 2.69,
+      "modified": "2026-04-15T21:31:21.126050"
+    },
+    {
+      "filename": "quem_pensa_enriquece_o_legado.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 2196965,
+      "size_mb": 2.1,
+      "modified": "2026-04-15T21:02:38.005730"
+    },
+    {
+      "filename": "como_organizar_sua_vida_financeira.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 2980921,
+      "size_mb": 2.84,
+      "modified": "2026-04-15T20:48:29.421711"
+    },
+    {
+      "filename": "pai_rico_pai_pobre.pdf",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 9592,
+      "size_mb": 0.01,
+      "modified": "2026-04-15T20:18:01.959915"
+    },
+    {
+      "filename": "o_homem_mais_rico_da_babilonia.epub",
+      "directory": "KnowledgeBase/downloads",
+      "size_bytes": 1639938,
+      "size_mb": 1.56,
+      "modified": "2026-04-15T20:52:04.735537"
+    }
+  ],
+  "system_health": {
+    "lancedb": "unavailable",
+    "sessions_db": "ok (60 sessions)",
+    "memory_files": "ok (2 files)",
+    "downloads_dir": "ok",
+    "kb_downloads_dir": "ok"
+  }
+}
